@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PackageAnalysis>
+    <Package name="org.quasar.route.response" x="250" y="93">
+        <DependencyLink destination="org.quasar.route.graphhopper"/>
+        <DependencyLink destination="org.quasar.route.dbConnection"/>
+    </Package>
+    <Package name="org.quasar.route.graphhopper" x="235" y="240">
+        <DependencyLink destination="org.quasar.route.response"/>
+        <DependencyLink destination="org.quasar.route.request"/>
+        <DependencyLink destination="org.quasar.route.dbConnection"/>
+    </Package>
+    <Package name="org.quasar.route.dbConnection" x="388" y="169"/>
+    <Package name="org.quasar.route.scenarios" x="679" y="171">
+        <DependencyLink destination="org.quasar.route.response"/>
+        <DependencyLink destination="org.quasar.route.graphhopper"/>
+        <DependencyLink destination="org.quasar.route.request"/>
+        <DependencyLink destination="org.quasar.route.dbConnection"/>
+    </Package>
+    <Package name="org.quasar.route.request" x="679" y="239">
+        <DependencyLink destination="org.quasar.route.openWeatherMap"/>
+    </Package>
+    <Package name="org.quasar.route.openWeatherMap" x="648" y="291"/>
+</PackageAnalysis>

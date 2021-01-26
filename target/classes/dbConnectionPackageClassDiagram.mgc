@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <Class name="org.quasar.route.scenarios.Scenario4Test" x="761" y="169">
+        <AttributesDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="org.quasar.route.graphhopper.GraphhopperServer"/>
+        <Communication destinationClassName="org.quasar.route.request.ConvertRouteRequest"/>
+        <Communication destinationClassName="org.quasar.route.response.RouteResponse"/>
+    </Class>
+    <Class name="org.quasar.route.dbConnection.PointOfInterest" x="516" y="185">
+        <AttributesDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="org.quasar.route.request.ConvertRouteRequest" x="58" y="384">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="org.quasar.route.request.RouteRequest"
+            endpointName="routeRequest" kind="Simple"/>
+    </Class>
+    <Class name="org.quasar.route.request.RouteRequest" x="79" y="299">
+        <AttributesDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="org.quasar.route.request.TimeInterval"
+            endpointName="availableTime" kind="Simple"/>
+        <Communication destinationClassName="org.quasar.route.openWeatherMap.OWMRequest"/>
+    </Class>
+    <Class name="org.quasar.route.scenarios.Scenario2Test" x="761" y="76">
+        <AttributesDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="org.quasar.route.graphhopper.GraphhopperServer"/>
+        <Communication destinationClassName="org.quasar.route.request.ConvertRouteRequest"/>
+        <Communication destinationClassName="org.quasar.route.response.RouteResponse"/>
+    </Class>
+    <Class name="org.quasar.route.graphhopper.poiCombination" x="197" y="127">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="org.quasar.route.response.RouteResponse" x="202" y="58">
+        <AttributesDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="org.quasar.route.response.Route"
+            endpointName="route" kind="Simple"/>
+        <Communication destinationClassName="org.quasar.route.response.Route"/>
+    </Class>
+    <Class name="org.quasar.route.graphhopper.Effort" x="133" y="129">
+        <AttributesDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="org.quasar.route.scenarios.Scenario3Test" x="760" y="122">
+        <AttributesDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="org.quasar.route.graphhopper.GraphhopperServer"/>
+        <Communication destinationClassName="org.quasar.route.request.ConvertRouteRequest"/>
+        <Communication destinationClassName="org.quasar.route.response.RouteResponse"/>
+    </Class>
+    <Class name="org.quasar.route.response.Route" x="369" y="60">
+        <AttributesDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="org.quasar.route.graphhopper.GraphhopperServer" x="62" y="181">
+        <AttributesDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="org.quasar.route.request.RouteRequest"
+            endpointName="request" kind="Simple"/>
+        <Communication destinationClassName="org.quasar.route.graphhopper.Effort"/>
+        <Communication destinationClassName="org.quasar.route.dbConnection.PointOfInterest"/>
+        <Communication destinationClassName="org.quasar.route.dbConnection.DBConnection"/>
+        <Communication destinationClassName="org.quasar.route.request.RouteRequest"/>
+        <Communication destinationClassName="org.quasar.route.dbConnection.MongoConnection"/>
+        <Communication destinationClassName="org.quasar.route.graphhopper.poiCombination"/>
+    </Class>
+    <Class name="org.quasar.route.request.TimeInterval" x="320" y="297">
+        <AttributesDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="org.quasar.route.dbConnection.DBConnection" x="458" y="137">
+        <AttributesDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="org.quasar.route.dbConnection.PointOfInterest"/>
+    </Class>
+    <Class name="org.quasar.route.openWeatherMap.WeatherData" x="746" y="293">
+        <AttributesDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="org.quasar.route.scenarios.Scenario1Test" x="759" y="33">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="org.quasar.route.graphhopper.GraphhopperServer"/>
+        <Communication destinationClassName="org.quasar.route.request.ConvertRouteRequest"/>
+        <Communication destinationClassName="org.quasar.route.response.RouteResponse"/>
+    </Class>
+    <Class name="org.quasar.route.openWeatherMap.OWMRequest" x="473" y="293">
+        <AttributesDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="org.quasar.route.openWeatherMap.WeatherData"
+            endpointName="weatherData" kind="Simple"/>
+    </Class>
+    <Class name="org.quasar.route.dbConnection.MongoConnection" x="560" y="138">
+        <AttributesDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="org.quasar.route.scenarios.Scenario5Test" x="764" y="215">
+        <AttributesDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="org.quasar.route.graphhopper.GraphhopperServer"/>
+        <Communication destinationClassName="org.quasar.route.request.ConvertRouteRequest"/>
+        <Communication destinationClassName="org.quasar.route.response.RouteResponse"/>
+    </Class>
+    <Class name="org.quasar.route.graphhopper.TimedPointOfInterest"
+        x="217" y="175">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="org.quasar.route.dbConnection.PointOfInterest"
+            endpointName="poi" kind="Simple"/>
+    </Class>
+    <Class name="org.quasar.route.response.ConvertRouteResponse" x="49" y="58">
+        <AttributesDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="false"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="org.quasar.route.response.Route"/>
+    </Class>
+</ClassDiagram>

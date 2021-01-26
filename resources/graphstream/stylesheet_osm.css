@@ -1,0 +1,85 @@
+node {
+	size: 5px;
+	fill-color: black;
+}
+node.big {
+	size: 10px;
+	fill-color: red;
+	
+}
+node.poi {
+	size: 7px;
+	fill-color: blue;
+
+}
+node.crowd100 {
+	size: 6px;
+	fill-color: #cc6600;
+}
+node.crowd75{
+	size: 6px;
+	fill-color: #ff8c1a;
+}
+node.crowd50{
+	size: 6px;
+	fill-color: #e68a00;
+}
+node.crowd25{
+	size: 6px;
+	fill-color: #ffad33;
+}
+
+node.sust50{
+	size: 10px;
+	fill-color: #99ff33;
+}
+node.sust75{
+	size: 10px;
+	fill-color: #59b300;
+}
+node.sust100{
+	size: 10px;
+	fill-color: #009900;
+}
+
+edge {
+	shape: line;
+	fill-color: #222;
+	arrow-size: 3px, 2px;
+}
+
+edge.especial {
+	shape: line;
+	fill-color: red;
+	arrow-size: 3px, 2px;
+	size: 3px;
+}
+
+edge.crowd100{
+	shape: line;
+	fill-color: #cc6600;
+	arrow-size: 3px, 2px;
+}
+edge.crowd75{
+	shape: line;
+	fill-color: #ff8c1a;
+	arrow-size: 3px, 2px;
+}
+edge.crowd50{
+	shape: line;
+	fill-color: #e68a00;
+	arrow-size: 3px, 2px;
+}
+edge.crowd25{
+	shape: line;
+	fill-color: #ffad33;
+	arrow-size: 3px, 2px;
+}
+
+
+sprite {
+	shape: box;
+	size: 63px, 83px;
+	fill-mode: image-scaled;
+	fill-image: url('C:/Users/Ana Rita/Desktop/wsTESE/geo-graphs/src/main/resources/graphstream/2.png');
+}

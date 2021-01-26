@@ -1,0 +1,20 @@
+node {
+	size: 10px;
+	fill-color: red;
+}
+node.important{
+	size: 15px;
+	fill-color: red;
+}
+edge {
+	shape: line;
+	fill-color: #222;
+	arrow-size: 3px, 2px;
+}
+
+sprite {
+	shape: box;
+	size: 32px, 52px;
+	fill-mode: image-scaled;
+	fill-image: url('C:/Users/Ana Rita/Desktop/wsTESE/geo-graphs/src/main/resources/graphstream/mapPinSmall.png');
+}
