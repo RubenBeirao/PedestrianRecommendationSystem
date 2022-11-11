@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://gmpg.org/xfn/11">
+    <title>Sustentourism Map</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+
+    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
+    <script type='text/javascript' src='http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js'></script>
+  </head>
+
+  <body>
+    <h1>Sustentourism Map</h1>
+
+    <div id="map" style="width: 60%; height: 640px; border: 1px solid #AAA;float: left;"></div>
+	<div id="info" style="width: 39%; height: 640px; border: 1px solid #AAA;float: right; display: none;">
+	
+	POI lat: <b id="lat"></b>
+	<br>
+	POI long: <b id="long"></b>
+	<br>
+	POI Name: <input type="text" name="poiname" id="poiname"><br>
+	POI URL: <input type="text" name="poiurl"><br>
+	<button  onclick="outra()">Save</button>
+
+
+	<p>Click the "Save" button and the form-data will be sent to the server".</p>
+
+	<p id="demo"></p>
+
+	
+	
+	
+	</div>
+	
+	
+	<div id="aux" style="display: none;">
+	</div>
+
+	<script type='text/javascript'>
+		
+		
+	function outra() {
+	document.getElementById("demo").innerHTML = document.getElementById("poiname").value;
+
+	}
+	
+	
+	
+	</script>
+	
+    
+    <script type='text/javascript' src='http://quasar.ptws.net/isctelisboa/wspois.php/point_of_interest'></script>
+	
+    <script type='text/javascript' src='maps/leaf-demo.js'></script>
+  </body>
+</html>

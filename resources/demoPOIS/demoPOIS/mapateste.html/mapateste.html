@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sustentourism</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+        #map {
+            height: 100%;
+        }
+
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #top-panel {
+            font-family: 'Roboto','sans-serif';
+            background-color: rgba(252, 252, 252);
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="top-panel">
+        <b>Nível de Esforço:</b>
+        <select id="effort" name="effort">
+            <option value="" selected="selected">escolha...</option>
+            <option value="5">low</option>
+            <option value="10">medium</option>
+            <option value="20">high</option>
+        </select>
+        <input type="button" value="New Direction" onClick="window.location.reload()">
+    </div>
+    <div id="map"></div>
+
+    <script>
+
+        var map, infoWindow;
+        var ponto = { lat: 38.736946, lng: -9.142685 }
+        var currentLocation, desiredLocation;
+
+        function initMap() {
+            var directionsService = new google.maps.DirectionsService;
+            var directionsDisplay = new google.maps.DirectionsRenderer(
+                {
+                    suppressMarkers: true
+                });
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: ponto,
+                zoom: 12
+            });
+
+            infoWindow = new google.maps.InfoWindow;
+            infoWindow.open(map);
+            load_points();
+            getCurrentPosition();
+
+
+            google.maps.event.addListener(map, "click", function (event) {
+                var latitude = event.latLng.lat();
+                var longitude = event.latLng.lng();
+                console.log(latitude + ', ' + longitude);
+                var newmarker = new google.maps.Marker({
+                    position: new google.maps.LatLng(latitude, longitude),
+                    icon: { url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png' },
+                    //icon: { url: "http://maps.google.com/mapfiles/kml/pal2/icon13.png" },
+                    map: map,
+                });
+
+                if (desiredLocation == null) {
+                    desiredLocation = {
+                        lat: latitude,
+                        lng: longitude
+                    };
+                }
+                // Center of map
+                map.panTo(new google.maps.LatLng(latitude, longitude));
+
+            });
+
+            directionsDisplay.setMap(map);
+
+            $('#effort').change(function () {
+                if (desiredLocation == null) {
+                    alert("Please select you destination");
+                } else {
+                    effort = $(this).val();
+                    var waypointArray = { "lat1": "38.714430492973015", "long1": "-9.140716195106508", "lat2": "38.70673674387253", "long2": "-9.13616180419922", "effort": effort };
+                    calculateAndDisplayRoute(directionsService, directionsDisplay, waypointArray);
+                    //load_points1(map, waypointArray);
+                }
+            });
+        }
+
+
+        function getCurrentPosition() {
+            // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    /* var newmarker = new google.maps.Marker({
+                         position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+                         icon: { url: 'http://google.com/mapfiles/ms/micons/man.png' },
+                         map: map,
+                     });*/
+                    currentLocation = pos;
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('Posição Atual');
+                    infoWindow.open(map);
+                    map.setCenter(pos);
+
+                }, function () {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                'Error: The Geolocation service failed.' :
+                'Error: Your browser doesn\'t support geolocation.');
+            infoWindow.open(map);
+        }
+
+        function load_points() {
+            $.get('http://quasar.ptws.net/isctelisboa/ws.php/places/', function (data) {
+                poi = data;
+                for (var i = 0; i < poi.length; i++) {
+                    createMarker(poi[i].latitude, poi[i].longitude, poi[i].name, poi[i].id);
+                }
+            });
+        }
+
+
+        function createMarker(lat, lon, html, id) {
+            var newmarker = new google.maps.Marker({
+                position: new google.maps.LatLng(lat, lon),
+                map: map,
+                title: html
+            });
+
+            newmarker['infowindow'] = new google.maps.InfoWindow({
+                content: html
+            });
+
+            google.maps.event.addListener(newmarker, 'click', function () {
+                this['infowindow'].open(map, this);
+            });
+
+            /*google.maps.event.addListener(newmarker, 'click', function () {
+                location.href = "detalhe.html?id=" + id;
+            });*/
+        }
+
+        function calculateAndDisplayRoute(directionsService, directionsDisplay, waypointArray) {
+            $.get('http://quasar.ptws.net/isctelisboa/ws.php/places/', function (data) {
+                //$.get('http://quasar.ptws.net/isctelisboa/sugestions.php/', waypointArray, function (data) {
+                var waypts = [];
+                var checkboxArray = data;
+                checkboxArray.sort(function (a, b) { return 0.5 - Math.random() });
+                if (effort == 5) {
+                    directionsDisplay.setOptions({
+                        polylineOptions: {
+                            strokeColor: '#01c09b',
+                            strokeOpacity: 0.7,
+                            strokeWeight: 5
+                        }
+                    });
+                } else if (effort == 10) {
+                    directionsDisplay.setOptions({
+                        polylineOptions: {
+                            strokeColor: '#faa25c',
+                            strokeOpacity: 0.7,
+                            strokeWeight: 5
+                        }
+                    });
+                } else {
+                    directionsDisplay.setOptions({
+                        polylineOptions: {
+                            strokeColor: '#67d5ff',
+                            strokeOpacity: 0.7,
+                            strokeWeight: 5
+                        }
+                    });
+                }
+
+                //alert(checkboxArray);
+                // for (var i = 0; i < checkboxArray.length; i++) {
+                for (var i = 0; i < effort; i++) {
+                    waypts.push({
+                        location: new google.maps.LatLng(parseFloat(checkboxArray[i].latitude), parseFloat(checkboxArray[i].longitude)),
+                        stopover: true
+                    });
+                }
+
+                directionsService.route({
+                    //origin: ponto,
+                    //destination: ponto,
+                    origin: currentLocation,
+                    destination: desiredLocation,
+                    waypoints: waypts,
+                    optimizeWaypoints: true,
+                    travelMode: 'WALKING',
+                }, function (response, status) {
+                    if (status === 'OK') {
+                        directionsDisplay.setDirections(response);
+                    } else {
+                        window.alert('Directions request failed due to ' + status);
+                    }
+                });
+            }
+            )
+        }
+    </script>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwsrpvMRrCfXTZvNIiLMNVlezHcTlKu2E&callback=initMap"
+        async defer></script>
+</body>
+
+</html>

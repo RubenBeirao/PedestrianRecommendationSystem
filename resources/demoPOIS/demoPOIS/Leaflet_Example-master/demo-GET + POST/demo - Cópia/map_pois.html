@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://gmpg.org/xfn/11">
+    <title>Sustentourism Map</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+
+    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
+    <script type='text/javascript' src='http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js'></script>
+  </head>
+
+  <body>
+    <h1>Sustentourism Map</h1>
+
+    <div id="map" style="width: 60%; height: 500px; border: 1px solid #AAA;float: left;"></div>
+	<div id="info" style="width: 39%; height: 500px; border: 1px solid #AAA;float: right; display: none;">
+	
+	Latitude: <b id="lat"></b><br>
+	
+	Longitude: <b id="long"></b><br>
+	
+	Name: <input type="text" name="point_name" id="point_name"><br>
+	Address: <input type="text" name="address" id="address"><br>
+	Door Number: <input type="text" name="door_number" id="door_number" value="0"><br>
+	Postal Code: <input type="text" name="postal_code" id="postal_code" value="1100-001"><br>
+	Door Number: <input type="text" name="poiname" id="poiname" value="1"><br>
+	Open hour: <input type="text" name="opens_hours" id="opens_hours"><br>
+	Close hour: <input type="text" name="closes_hours" id="closes_hours"><br>
+	Contact Mobile: <input type="text" name="contact_mobile" id="contact_mobile"><br>
+	Contact Landline: <input type="text" name="contact_landline" id="contact_landline"><br>
+	Point information url: <input type="text" name="point_url" id="point_url"><br>
+	Point image url: <input type="text" name="image_url" id="image_url"><br>
+	Sustainability: <input type="text" name="sustainability" id="sustainability"><br>
+	
+	
+	
+	<button  onclick="save()">Save</button>
+
+
+	<p>Click the "Save" button and the form-data will be sent to the server.</p>
+
+	<p id="demo"></p>
+
+			
+	</div>
+	
+	<div id="refreshButtonDiv" style="float : botton">
+	<button  onclick="refreshMap()">Refresh Map</button>
+	</div>
+	
+	
+	<div id="aux" style="display: none;">
+	</div>
+
+	<script type='text/javascript'>
+		
+		
+	function save() {
+	
+	document.getElementById("demo").innerHTML = "oioi";
+	
+		
+	var latitude = document.getElementById("lat").innerHTML;
+	var longitude = document.getElementById("long").innerHTML;
+	
+	
+	const data = {
+		"category_id": "0",
+		"point_name": "dummy" ,
+		"door_number": "0",
+		"postal_code": "0",
+		"address": "na",
+		"longitude": "-9.14",
+		"latitude": "38.72",
+		"altitude": "0",
+		"opens_hours": "0",
+		"closes_hours": "0",
+		"contact_mobile": "0",
+		"contact_landline": "0",
+		"point_url": "na",
+		"image_url": "na",
+		"sustainability": "0"
+		}
+	
+	var obj = new Object();
+	obj.category_id = "0";
+	obj.point_name = document.getElementById("point_name").value;
+	obj.door_number = document.getElementById("door_number").value;
+	obj.postal_code = document.getElementById("postal_code").value;
+	obj.address = document.getElementById("address").value;
+	obj.longitude = longitude;
+	obj.latitude = latitude;
+	obj.altitude ="0";
+	obj.opens_hours = document.getElementById("opens_hours").value;
+	obj.closes_hours = document.getElementById("closes_hours").value;
+	obj.contact_mobile = document.getElementById("contact_mobile").value;
+	obj.point_url = document.getElementById("point_url").value;
+	obj.image_url = document.getElementById("image_url").value;
+	obj.sustainability = document.getElementById("sustainability").value;
+	
+	var jsonString= JSON.stringify(obj);
+	
+
+	
+	const url='http://quasar.ptws.net/isctelisboa/wspois.php';
+		
+	$.post(url,jsonString, function(jsonString, status){
+			console.log('${jsonString} and status is ${status}')
+	});
+	
+	
+	
+	
+	
+	
+	
+	}
+
+	function refreshMap(){
+		location.reload();
+	}
+	
+	
+	</script>
+	
+	
+	
+    
+    	
+    <script type='text/javascript' src='maps/leaf-demo.js'></script>
+  </body>
+</html>
