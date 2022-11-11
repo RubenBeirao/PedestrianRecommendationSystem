@@ -1,0 +1,11 @@
+Map:
+[50(38,-7)]  [51(38,-9)]  [52(41,-8)]  [53(37,-7)]  
+Initial distance: 9
+Generations: 1000
+Population size: 300
+Mutation rate: 0.015
+Tournament size: 10
+Elitism: true
+Final distance: 9
+Solution:
+[52(41,-8)]  [50(38,-7)]  [53(37,-7)]  [51(38,-9)]  
